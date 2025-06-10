@@ -1,28 +1,34 @@
 package Principal;
 
+import Modelos.Experiencia;
 import Modelos.Usuario;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class ExperienciaApp {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        
         final List<Usuario> usuarios = new ArrayList<>();
+        final List<Experiencia> experiencias = new ArrayList<>();
 
         int opcao = -1;
         while (opcao != 8) {
             ExibirMenu();
 
-            opcao = sc.nextInt();
+            opcao = Integer.parseInt(br.readLine());
             switch (opcao) {
                 case 1:
                     System.out.print("Digite seu nome: ");
-                    String nome = sc.nextLine();
-                    sc.nextLine();
+                    String nome = br.readLine();
                     System.out.print("Digite seu e-mail: ");
-                    String email = sc.nextLine();
+                    String email = br.readLine();
 
                     usuarios.add(new Usuario(nome, email));
                     System.out.println("\nCadastro realizado com sucesso! " +
@@ -30,10 +36,9 @@ public class ExperienciaApp {
                 break;
                 case 2:
                     System.out.print("Digite seu nome: ");
-                    String loginNome = sc.nextLine();
-                    sc.nextLine();
+                    String loginNome = br.readLine();
                     System.out.print("Digite seu e-mail: ");
-                    String loginEmail = sc.nextLine();
+                    String loginEmail = br.readLine();
 
                     for (Usuario u : usuarios) {
                         if (u.getNome().equals(loginNome) && u.getEmail().equals(loginEmail)) {
@@ -43,10 +48,35 @@ public class ExperienciaApp {
                         }
                     }
                 break;
+                case 3:
+                    System.out.print("Digite o nome da experiencia: ");
+                    String nomeExperiencia = br.readLine();
+                    System.out.print("Digite a descrição da experiencia: ");
+                    String descricaoExperiencia = br.readLine();
+                    System.out.print("Digite a data (YYYY-MM-DD): ");
+                    LocalDate dataExperiencia = LocalDate.parse(br.readLine());
+                    System.out.print("Digite o horário (HH:MM): ");
+                    LocalTime horarioExperiencia = LocalTime.parse(br.readLine());
+                    System.out.print("Digite o local (presencial/online): ");
+                    String localExperiencia = br.readLine();
+                    System.out.print("Digite o número máximo de participantes: ");
+                    int totalParticipantes = Integer.parseInt(br.readLine());
+
+                    experiencias.add(new Experiencia(nomeExperiencia, descricaoExperiencia, dataExperiencia, horarioExperiencia,
+                            localExperiencia, totalParticipantes));
+                    System.out.println("\nExperiencia criada com sucesso!");
+                break;
+                case 4:
+                    for (Experiencia e : experiencias) {
+                        System.out.println("Experiências disponíveis: ");
+                        System.out.println(e.getCodigo() + ". " + e.getNome() + " - Data: " + e.getData() + " " + e.getHorario()
+                                + " - Local: " + e.getLocal() + " - Vagas: " + e.getTotalParticipantes());
+                    }
+                break;
             }
 
-            System.out.print("Pressione Enter para continuar...");
-            sc.nextLine();
+            /*System.out.print("Pressione Enter para continuar...");
+            br.readLine();*/
         }
     }
 
