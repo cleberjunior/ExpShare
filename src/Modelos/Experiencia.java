@@ -23,9 +23,9 @@ public class Experiencia {
 
     }
 
-    public Experiencia(String nome, String descricao, LocalDate data, LocalTime horario, String local,
+    public Experiencia(int codigo, String nome, String descricao, LocalDate data, LocalTime horario, String local,
                        int totalParticipantes) {
-        this.codigo++;
+        this.codigo = codigo;
         this.nome = nome;
         this.descricao = descricao;
         this.data = data;

@@ -18,7 +18,7 @@ public class ExperienciaApp {
         final List<Usuario> usuarios = new ArrayList<>();
         final List<Experiencia> experiencias = new ArrayList<>();
 
-        int opcao = -1;
+        int opcao = -1, index = 1;
         while (opcao != 8) {
             ExibirMenu();
 
@@ -62,21 +62,21 @@ public class ExperienciaApp {
                     System.out.print("Digite o número máximo de participantes: ");
                     int totalParticipantes = Integer.parseInt(br.readLine());
 
-                    experiencias.add(new Experiencia(nomeExperiencia, descricaoExperiencia, dataExperiencia, horarioExperiencia,
-                            localExperiencia, totalParticipantes));
+                    if (experiencias.add(new Experiencia(index, nomeExperiencia, descricaoExperiencia, dataExperiencia, horarioExperiencia,
+                            localExperiencia, totalParticipantes))) index++;
                     System.out.println("\nExperiencia criada com sucesso!");
                 break;
                 case 4:
+                    System.out.println("Experiências disponíveis: ");
                     for (Experiencia e : experiencias) {
-                        System.out.println("Experiências disponíveis: ");
                         System.out.println(e.getCodigo() + ". " + e.getNome() + " - Data: " + e.getData() + " " + e.getHorario()
                                 + " - Local: " + e.getLocal() + " - Vagas: " + e.getTotalParticipantes());
                     }
                 break;
             }
 
-            /*System.out.print("Pressione Enter para continuar...");
-            br.readLine();*/
+            System.out.print("Pressione Enter para continuar...");
+            br.readLine();
         }
     }
 
