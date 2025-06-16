@@ -75,27 +75,36 @@ public class ExperienciaApp {
                     }
                 break;
                 case 5:
-                    System.out.println("Digite o número da experiência para se inscrever: ");
+                    System.out.print("Digite o número da experiência para se inscrever: ");
                     int codigoExperiencia = Integer.parseInt(br.readLine());
-                    System.out.println("Digite o seu nome: ");
+                    System.out.print("Digite o seu nome: ");
                     String nomeInscrito = br.readLine();
-                    System.out.println("Digite o seu e-mail: ");
+                    System.out.print("Digite o seu e-mail: ");
                     String emailInscrito = br.readLine();
 
                     Experiencia experiencia = experiencias.get(codigoExperiencia - 1);
-                    if (experiencia.addParticipante(List.of(new Participante(indexParticipante, nomeInscrito, emailInscrito)))) {
+                    if (experiencia.addParticipante(new Participante(indexParticipante, nomeInscrito, emailInscrito))) {
                         indexParticipante++;
                     }
                     System.out.println("Você foi inscrito com sucesso na experiência \"" + experiencia.getNome() + "\".");
                 break;
                 case 6:
-                    System.out.println("Digite o número da experiência para ver os participantes: ");
+                    System.out.print("Digite o número da experiência para ver os participantes: ");
                     codigoExperiencia = Integer.parseInt(br.readLine());
                     experiencia = experiencias.get(codigoExperiencia - 1);
 
                     System.out.println("Participantes da experiência \"" + experiencia.getNome() + "\": ");
                     experiencia.getParticipantes().forEach(p -> System.out.println(p.getCodigo() + ". " + p.getNome()
                             + " - " + p.getEmail()));
+                break;
+                case 7:
+                    System.out.print("Digite o número da experiência para cancelar inscrição: ");
+                    codigoExperiencia = Integer.parseInt(br.readLine());
+                    experiencia = experiencias.get(codigoExperiencia - 1);
+                    System.out.print("Digite seu nome: ");
+                    nomeInscrito = br.readLine();
+                    experiencia.getParticipantes().removeIf(p -> p.getNome().equals(nomeInscrito));
+                    System.out.println("Sua inscrição na experiência \"" + experiencia.getNome() + "\" foi cancelada com sucesso.");
                 break;
             }
 

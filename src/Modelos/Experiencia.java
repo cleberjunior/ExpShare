@@ -2,6 +2,7 @@ package Modelos;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Experiencia {
@@ -35,6 +36,7 @@ public class Experiencia {
         this.horario = horario;
         this.local = local;
         this.totalParticipantes = totalParticipantes;
+        this.participantes = new ArrayList<>();
     }
 
     public int getCodigo() {
@@ -43,10 +45,6 @@ public class Experiencia {
 
     public String getNome() {
         return nome;
-    }
-
-    public String getDescricao() {
-        return descricao;
     }
 
     public LocalDate getData() {
@@ -69,7 +67,10 @@ public class Experiencia {
         return participantes;
     }
 
-    public boolean addParticipante(List<Participante> participantes) {
-        this.participantes = participantes;
+    public boolean addParticipante(Participante participante) {
+        if (this.participantes.add(participante)) {
+            return true;
+        }
+        return false;
     }
 }
