@@ -2,6 +2,7 @@ package Modelos;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 public class Experiencia {
 
@@ -18,6 +19,8 @@ public class Experiencia {
     private String local;
 
     private int totalParticipantes;
+
+    private List<Participante> participantes;
 
     public Experiencia() {
 
@@ -60,5 +63,13 @@ public class Experiencia {
 
     public int getTotalParticipantes() {
         return totalParticipantes;
+    }
+
+    public List<Participante> getParticipantes() {
+        return participantes;
+    }
+
+    public void addParticipante(List<Participante> participantes) {
+        this.participantes = participantes;
     }
 }
