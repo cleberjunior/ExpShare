@@ -69,7 +69,7 @@ public class Experiencia {
         return participantes;
     }
 
-    public void addParticipante(List<Participante> participantes) {
+    public boolean addParticipante(List<Participante> participantes) {
         this.participantes = participantes;
     }
 }

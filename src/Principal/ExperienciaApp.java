@@ -1,6 +1,7 @@
 package Principal;
 
 import Modelos.Experiencia;
+import Modelos.Participante;
 import Modelos.Usuario;
 
 import java.io.BufferedReader;
@@ -18,7 +19,7 @@ public class ExperienciaApp {
         final List<Usuario> usuarios = new ArrayList<>();
         final List<Experiencia> experiencias = new ArrayList<>();
 
-        int opcao = -1, index = 1;
+        int opcao = -1, indexExperiencia = 1, indexParticipante = 1;
         while (opcao != 8) {
             ExibirMenu();
 
@@ -62,8 +63,8 @@ public class ExperienciaApp {
                     System.out.print("Digite o número máximo de participantes: ");
                     int totalParticipantes = Integer.parseInt(br.readLine());
 
-                    if (experiencias.add(new Experiencia(index, nomeExperiencia, descricaoExperiencia, dataExperiencia, horarioExperiencia,
-                            localExperiencia, totalParticipantes))) index++;
+                    if (experiencias.add(new Experiencia(indexExperiencia, nomeExperiencia, descricaoExperiencia, dataExperiencia, horarioExperiencia,
+                            localExperiencia, totalParticipantes))) indexExperiencia++;
                     System.out.println("\nExperiencia criada com sucesso!");
                 break;
                 case 4:
@@ -73,6 +74,29 @@ public class ExperienciaApp {
                                 + " - Local: " + e.getLocal() + " - Vagas: " + e.getTotalParticipantes());
                     }
                 break;
+                case 5:
+                    System.out.println("Digite o número da experiência para se inscrever: ");
+                    int codigoExperiencia = Integer.parseInt(br.readLine());
+                    System.out.println("Digite o seu nome: ");
+                    String nomeInscrito = br.readLine();
+                    System.out.println("Digite o seu e-mail: ");
+                    String emailInscrito = br.readLine();
+
+                    Experiencia experiencia = experiencias.get(codigoExperiencia - 1);
+                    if (experiencia.addParticipante(List.of(new Participante(indexParticipante, nomeInscrito, emailInscrito)))) {
+                        indexParticipante++;
+                    }
+                    System.out.println("Você foi inscrito com sucesso na experiência \"" + experiencia.getNome() + "\".");
+                break;
+                case 6:
+                    System.out.println("Digite o número da experiência para ver os participantes: ");
+                    codigoExperiencia = Integer.parseInt(br.readLine());
+                    experiencia = experiencias.get(codigoExperiencia - 1);
+
+                    System.out.println("Participantes da experiência \"" + experiencia.getNome() + "\": ");
+                    experiencia.getParticipantes().forEach(p -> System.out.println(p.getCodigo() + ". " + p.getNome()
+                            + " - " + p.getEmail()));
+                break;
             }
 
             System.out.print("Pressione Enter para continuar...");
@@ -81,8 +105,8 @@ public class ExperienciaApp {
     }
 
     private static void ExibirMenu() {
-        System.out.println("\nBem-vindo à Plataform de Experiencias Compartilhadas\n");
-        System.out.println("""
+            System.out.println("\nBem-vindo à Plataform de Experiencias Compartilhadas\n");
+            System.out.println("""
             Escolha uma opção:
             1. Cadastro de usuário
             2. Login
@@ -93,6 +117,6 @@ public class ExperienciaApp {
             7. Cancelar inscrição
             8. Sair
         """);
-        System.out.print("Digite a opção desejada: ");
+            System.out.print("Digite a opção desejada: ");
     }
 }
