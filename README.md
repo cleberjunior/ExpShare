@@ -13,9 +13,9 @@ Este projeto propõe o desenvolvimento de uma plataforma colaborativa onde pesso
 4. 📜 Exibição dos eventos na tela principal (data, hora, tema)
 5. 📊 Acompanhamento de eventos passados e futuros para cada pessoa
 6. ✅ Regras para eventos:
-    ○ Mínimo de 10 participantes
-    ○ Definir local (online ou presencial)
-    ○ Definir data, hora de início e duração
+    - Mínimo de 10 participantes
+    - Definir local (online ou presencial)
+    - Definir data, hora de início e duração
 ---
 ## 🛠 Tecnologias
 
