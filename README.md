@@ -1,4 +1,4 @@
-# 🌟 Projeto: Plataforma de Experiências Compartilhadas
+# 🌟 Projeto Plataforma de Experiências Compartilhadas
 
 ## 📌 Introdução
 
